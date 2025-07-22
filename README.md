@@ -281,3 +281,65 @@ Para un entorno de producción, considera implementar:
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia ISC.
+
+## 🌍 OPCIONES GRATUITAS DE DESPLIEGUE PARA BACKEND + MYSQL
+
+Usa Railway si quieres algo simple, rápido y todo en uno (Node.js + MySQL).
+Si prefieres más control, usa Render + Planetscale (conexión externa).
+
+🔹 2. Railway (https://railway.app)
+✅ Plan gratuito con backend + base de datos (incluye MySQL, PostgreSQL).
+
+✅ Despliegue fácil desde GitHub.
+
+❗ Límite de uso: 500 horas/mes y 1 GB base de datos gratis.
+
+Muy buena opción todo en uno.
+
+Cómo usarlo:
+
+Conecta Railway a tu GitHub.
+
+Elige "New Project" → "Start from template" o conecta tu repo.
+
+Agrega plugin de MySQL desde la sección de plugins.
+
+## 🚀 Despliegue gratuito en Railway
+
+Puedes desplegar este backend de forma gratuita usando Railway, que permite crear un servidor Node.js y una base de datos MySQL todo en un mismo lugar.
+
+### ✅ Características del plan gratuito
+
+- Backend en Node.js con auto-despliegue desde GitHub
+- Base de datos MySQL incluida (también soporta PostgreSQL y otros)
+- Hasta 500 horas/mes de uso y 1 GB de base de datos gratis
+- Ideal para pruebas, proyectos personales o MVPs
+
+### ⚙️ Pasos para desplegar
+
+1. **Ingresa a https://railway.app y crea una cuenta**
+
+2. **Haz clic en "New Project" y elige una de estas opciones:**
+   - Deploy from GitHub repo si ya tienes tu proyecto subido
+   - O elige "Start from template" y luego configura tu código
+
+3. **Ve a la pestaña "Plugins" y agrega el plugin de MySQL**
+   
+   Railway creará una base de datos y te dará las credenciales (host, user, password, database, port).
+
+4. **Crea un archivo `.env` en tu proyecto con estas variables:**
+   ```env
+   DB_HOST=xxx
+   DB_USER=xxx
+   DB_PASSWORD=xxx
+   DB_NAME=xxx
+   DB_PORT=3306
+   PORT=3000
+   ```
+
+5. **Railway detectará tu `app.js` o `index.js` y desplegará tu backend automáticamente**
+
+6. **¡Listo! Obtendrás una URL pública para acceder a tu API**
+
+### 💡 Consejo
+Puedes revisar logs en tiempo real desde Railway y configurar auto-deploy con cada push a GitHub.
