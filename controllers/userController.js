@@ -19,9 +19,9 @@ const getUsers = async (req, res) => {
 };
 
 const addUser = async (req, res) => {
-    const { name, email } = req.body;
+    const { first_name, last_name, email, pass } = req.body;
     try {
-        const newUser = await userModel.createUser(name, email);
+        const newUser = await userModel.createUser(first_name, last_name, email, pass);
         res.status(201).json(getResponse(newUser));
     } catch (err) {
         res.status(500).json(getResponse(null, 'Error al crear usuario', 'error'));
