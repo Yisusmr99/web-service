@@ -6,7 +6,7 @@ info:
     El endpoint productivo se estará compartiendo en privado favor solicitarlo a aglún integrante del equipo.
   version: 1.0.0
 servers:
-  - url: https://web-service-production-4cf7.up.railway.app/
+  - url: https://web-service-production-4cf7.up.railway.app
     description: Servidor de desarrollo local
 
 tags:
