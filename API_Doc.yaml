@@ -1,0 +1,165 @@
+openapi: 3.0.0
+info:
+  title: "API GESTION DE USUARIOS GRUPO #1"
+  description: |-
+    Esta API permite gestionar usuarios en nuestar BD (Crear & Leer). 
+    El endpoint productivo se estará compartiendo en privado favor solicitarlo a aglún integrante del equipo.
+  version: 1.0.0
+servers:
+  - url: https://web-service-production-4cf7.up.railway.app
+    description: Servidor de desarrollo local
+
+tags:
+  - name: Gestion de usuarios
+    description: Operaciones (Crear & Leer) Usuarios
+
+paths:
+  /api/users:
+    get:
+      tags:
+        - Usuarios
+      summary: Obtener todos los usuarios
+      description: Muestra la lista completa de todos los usuarios registrados en el la BD.
+      responses:
+        '200':
+          description: Operación exitosa. Retorna una lista de usuarios.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Operación exitosa
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    post:
+      tags:
+        - Usuarios
+      summary: Crear un nuevo usuario
+      description: Registra un nuevo usuario en la base de datos a partir de los datos proporcionados.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        '201':
+          description: Usuario creado exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: Operación exitosa
+                  data:
+                    $ref: '#/components/schemas/UserCreated'
+        '500':
+          description: Error interno del servidor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          description: ID único del usuario.
+          example: 1
+        first_name:
+          type: string
+          description: Nombre del usuario.
+          example: Juan
+        last_name:
+          type: string
+          description: Apellido del usuario.
+          example: Pérez
+        email:
+          type: string
+          format: email
+          description: Correo electrónico del usuario.
+          example: juan.perez@example.com
+        pass:
+          type: string
+          description: Hash de la contraseña del usuario.
+          example: hash_de_la_contraseña
+
+    NewUser:
+      type: object
+      required:
+        - first_name
+        - last_name
+        - email
+        - pass
+      properties:
+        first_name:
+          type: string
+          description: Nombre del usuario.
+          example: Carlos
+        last_name:
+          type: string
+          description: Apellido del usuario.
+          example: López
+        email:
+          type: string
+          format: email
+          description: Correo electrónico del usuario.
+          example: carlos.lopez@example.com
+        pass:
+          type: string
+          format: password
+          description: Contraseña del usuario.
+          example: micontraseña123
+    
+    UserCreated:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          example: 3
+        first_name:
+          type: string
+          example: Carlos
+        last_name:
+          type: string
+          example: López
+        email:
+          type: string
+          format: email
+          example: carlos.lopez@example.com
+
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Error al realizar la operación
+        data:
+          type: object
+          nullable: true
+          example: null
