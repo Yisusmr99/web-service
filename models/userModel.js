@@ -28,4 +28,14 @@ async function createUser(first_name, last_name, email, pass) {
   }
 }
 
-module.exports = { getAllUsers, createUser };
+async function getUserByEmail(email) {
+  try {
+    const [rows] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+    return rows[0]; // Retorna el primer usuario encontrado o undefined si no existe
+  } catch (err) {
+    console.error('❌ Error en getUserByEmail:', err);
+    throw err;
+  }
+}
+
+module.exports = { getAllUsers, createUser, getUserByEmail };

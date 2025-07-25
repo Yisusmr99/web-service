@@ -29,6 +29,12 @@ const addUser = async (req, res) => {
   }
 
   try {
+    const existingUser = await userModel.getUserByEmail(email);
+    if (existingUser) {
+      return res
+        .status(409)
+        .json(getResponse(null, 'El correo ya está registrado', 'error'));
+    }
     const newUser = await userModel.createUser(first_name, last_name, email, pass);
     res.status(201).json(getResponse(newUser));
   } catch (err) {
