@@ -98,18 +98,13 @@ Antes de ejecutar este proyecto, asegúrate de tener instalado:
 2. **Crea la tabla de usuarios**:
    ```sql
    CREATE TABLE users (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       name VARCHAR(100) NOT NULL,
-       email VARCHAR(100) NOT NULL UNIQUE,
-       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-   );
-   ```
-
-3. **(Opcional) Inserta datos de prueba**:
-   ```sql
-   INSERT INTO users (name, email) VALUES 
-   ('Juan Pérez', 'juan@email.com'),
-   ('María García', 'maria@email.com');
+      user_id int NOT NULL AUTO_INCREMENT,
+      first_name varchar(100) NOT NULL,
+      last_name varchar(100) NOT NULL,
+      email varchar(100) DEFAULT NULL,
+      pass varchar(255) NOT NULL,
+      PRIMARY KEY (user_id)
+   ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
    ```
 
 ## 🎯 Uso
